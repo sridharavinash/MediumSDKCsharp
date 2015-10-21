@@ -29,7 +29,7 @@ namespace MediumTestClient
 			    code = authCode,
 			    redirect_uri = RedirectUri
 		    };
-		    mc.ExhangeAuthCodeForToken(authToken);
+		    var tokenResponse = mc.ExhangeAuthCodeForToken(authToken);
 		    return mc;
 	    }
 

@@ -28,7 +28,7 @@ namespace MediumSDKCsharp {
 			return uri.ToString();
 		}
 
-		public void ExhangeAuthCodeForToken(AuthTokenRequest authTokenRequest) {
+		public AuthTokenResponse ExhangeAuthCodeForToken(AuthTokenRequest authTokenRequest) {
 			string path = $"/{Version}/tokens";
 			var request = new RestRequest(path) {Method = Method.POST};
 			request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -39,6 +39,20 @@ namespace MediumSDKCsharp {
 			request.AddParameter("grant_type", authTokenRequest.grant_type, ParameterType.GetOrPost);
 			var response = Request<AuthTokenResponse>(request);
 			_accessToken = response.access_token;
+			return response;
+		}
+
+		public AuthTokenResponse RefreshToken(RefreshTokenRequest refreshTokenRequest) {
+			string path = $"/{Version}/tokens";
+			var request = new RestRequest(path) { Method = Method.POST };
+			request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+			request.AddParameter("client_id", _applicationId, ParameterType.GetOrPost);
+			request.AddParameter("client_secret", _applicationSecret, ParameterType.GetOrPost);
+			request.AddParameter("grant_type", refreshTokenRequest.grant_type, ParameterType.GetOrPost);
+			request.AddParameter("refresh_token", refreshTokenRequest.refresh_token, ParameterType.GetOrPost);
+			var response = Request<AuthTokenResponse>(request);
+			_accessToken = response.access_token;
+			return response;
 		}
 
 		public CreatePostResponse CreatePost(CreatePostRequest createPostRequest, string userId) {
