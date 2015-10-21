@@ -25,3 +25,11 @@ var postRequest = new CreatePostRequest
 				tags = new[] { "api", "test" }
 			};
 var post = mc.CreatePost(postRequest, user.id);
+```
+
+#Install
+Install the package using the Package Manager in Visual Studio.
+```
+Install-Package MediumSDKCsharp 
+```
+
