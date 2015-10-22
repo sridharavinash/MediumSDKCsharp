@@ -1,5 +1,5 @@
 # MediumSDKCsharp
-A C# wrapper for accessing the Medium API.
+A C# wrapper for accessing the [Medium API](https://github.com/Medium/medium-api-docs)
 
 #Quick Start
  ```csharp
